@@ -13,7 +13,7 @@ import { SignupDetailsService } from '../services/signupdetails.service';
 export class SignupComponent implements OnInit {
   isLoading: boolean = false;
   isSignupMode: boolean = true;
-
+  signupstatus:boolean=false;
   onSignupSwitchMode() {
     this.isSignupMode = !this.isSignupMode;
   }
@@ -28,11 +28,14 @@ export class SignupComponent implements OnInit {
     if (this.isSignupMode) {
       this.authservice.signup(email, password).subscribe({
         next: (authResponse) => {
-          this.signupdetailsservice
-            .usersignupdetails(name, registrationNumber, email, password)
+          this.signupdetailsservice.usersignupdetails(name, registrationNumber, email, password)
             .subscribe({
               next: () => {
                 this.isLoading = false;
+                this.signupstatus=true;
+                if(this.signupstatus){
+                  alert("Signup successful. Please login to continue");
+                }
                 form.reset();
               },
               error: (err) => {
@@ -49,11 +52,7 @@ export class SignupComponent implements OnInit {
     }
   }
 
-  constructor(
-    private router: Router,
-    private authservice: AuthService,
-    private signupdetailsservice: SignupDetailsService
-  ) {}
+  constructor(private router: Router, private authservice: AuthService, private signupdetailsservice: SignupDetailsService) {}
 
   ngOnInit(): void {}
 }
