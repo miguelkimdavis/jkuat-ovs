@@ -11,7 +11,7 @@ export class FeedbackService {
     sendFeedBack(name: string, email: string, message: string){
         const feedback = {name:name, email:email, message:message}
         // const feedback = {name:feedback.name, email:feedback.email, message:feedback.message}
-        return this.http.post('https://ovsfeedback-default-rtdb.firebaseio.com/feedback.json', feedback)
+        return this.http.post<FeedBack>('https://ovsfeedback-default-rtdb.firebaseio.com/feedback.json', feedback)
     }
     
 

@@ -5,3 +5,4 @@ export interface AuthResponse {
     expiresIn:string
     localId:string
 }
+

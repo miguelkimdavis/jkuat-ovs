@@ -27,8 +27,7 @@ export class ContactComponent implements OnInit {
     const name = form.value.name;
     const email = form.value.email;
     const message = form.value.message;
-    console.log(name, email, message);
-    form.reset();
+    console.log(form.value);
 
     this.feedbackservice.sendFeedBack(name, email, message) 
     .subscribe({
@@ -39,5 +38,6 @@ export class ContactComponent implements OnInit {
         alert(err.message);
       }
     }) 
+    form.reset();
   }
 }
