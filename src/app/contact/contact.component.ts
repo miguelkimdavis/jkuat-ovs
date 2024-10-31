@@ -1,4 +1,6 @@
+import { FeedbackService } from './../services/feedback.service';
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,7 +9,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./contact.component.css'],
 })
 export class ContactComponent implements OnInit {
-  constructor(private router: Router) {}
+
+  constructor(private router: Router, private feedbackservice: FeedbackService) {}
 
   ngOnInit(): void {
     const contactForm = document.getElementById('contactForm') as HTMLFormElement;
@@ -18,5 +21,23 @@ export class ContactComponent implements OnInit {
         alert('Your message has been sent successfully!');
       });
     }
+  }
+
+  onFeedBackSubmit(form:NgForm){
+    const name = form.value.name;
+    const email = form.value.email;
+    const message = form.value.message;
+    console.log(name, email, message);
+    form.reset();
+
+    this.feedbackservice.sendFeedBack(name, email, message) 
+    .subscribe({
+      next:(res)=>{
+        console.log(res);
+      },
+      error:(err)=>{
+        alert(err.message);
+      }
+    }) 
   }
 }
