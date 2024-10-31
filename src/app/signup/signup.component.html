@@ -1,0 +1,71 @@
+<div class="container">
+
+    <app-loader *ngIf="isLoading"></app-loader>
+    <form class="form" #signupForm="ngForm" (ngSubmit)="onSignupFormSubmit(signupForm)" *ngIf="!isLoading">
+        <p id="head-title">Create A New Account</p>
+        <div class="login-field">
+            <label>Name: <br> <i class="input-icon fa-solid fa-user"></i></label>
+            <input type="text" 
+                class="input-field" 
+                placeholder="Enter Your Name"
+                name="name"
+                ngModel
+                required>
+        </div>
+
+        <div class="login-field">
+            <label>Registration Number: <br><i class="fa-solid fa-user-ninja"></i></label>
+            <input type="text" 
+                class="input-field" 
+                placeholder="Enter Your Username"
+                name="registrationNumber"
+                ngModel
+                required>
+        </div>
+
+        <div class="login-field">
+            <label>Email Address: <br> <i class="fa-solid fa-envelope"></i></label>
+            <input type="email" 
+                class="input-field" 
+                placeholder="Enter Your Email"
+                name="email"
+                ngModel
+                required
+                email>
+        </div>
+
+        <div class="login-field">
+            <label>Enter PassWord: <br> <i class="input-icon fa-solid fa-lock"></i></label>
+            <input type="password" 
+                class="input-field" 
+                placeholder="Enter Your PassWord"
+                name="password"
+                ngModel
+                required>
+        </div>
+
+        <div class="login-field">
+            <label>Confirm PassWord: <br> <i class="fa-solid fa-key"></i></label>
+            <input type="password" 
+                class="input-field" 
+                placeholder="Confirm Your PassWord"
+                name="confirmPassword"
+                ngModel
+                required>
+        </div>
+
+        <div class="btn">
+            <button class="button-1">Sign Up</button>
+        </div>
+
+        <div class="btn-login">
+            <p>Already have an account? <a routerLink="/login" (click)="onSignupSwitchMode()">Log in</a></p> 
+        </div>
+
+        <div class="remember-me">
+            <input type="checkbox" id="rememberMe">
+            <label for="rememberMe">Remember me</label>
+        </div>
+        
+    </form>
+</div>
