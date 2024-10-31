@@ -12,32 +12,37 @@ export class ContactComponent implements OnInit {
 
   constructor(private router: Router, private feedbackservice: FeedbackService) {}
 
-  ngOnInit(): void {
-    const contactForm = document.getElementById('contactForm') as HTMLFormElement;
-    console.log(contactForm);
-    if (contactForm) {
-      contactForm.addEventListener('submit', function (event: Event) {
-        event.preventDefault();
-        alert('Your message has been sent successfully!');
-      });
-    }
-  }
+  isLoading: boolean = false;
+
+  ngOnInit(): void {}
 
   onFeedBackSubmit(form:NgForm){
+    this.isLoading=true
     const name = form.value.name;
     const email = form.value.email;
     const message = form.value.message;
     console.log(form.value);
 
-    this.feedbackservice.sendFeedBack(name, email, message) 
-    .subscribe({
-      next:(res)=>{
-        console.log(res);
-      },
-      error:(err)=>{
-        alert(err.message);
-      }
-    }) 
-    form.reset();
-  }
+    if(name=='' || email=='' || message==''){
+      alert('Please fill all fields');
+      this.isLoading=false
+    }
+    else{
+      this.feedbackservice.sendFeedBack(name, email, message) 
+      .subscribe({
+        next:(res)=>{
+          this.isLoading=false
+          console.log(res);
+        },
+        error:(err)=>{
+          this.isLoading=false
+          alert(err.message);
+        },
+        complete:()=>{
+          alert('Feedback sent successfully');
+        }
+      }) 
+      form.reset();
+    }
+    }
 }

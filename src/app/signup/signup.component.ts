@@ -1,4 +1,3 @@
-//
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -14,39 +13,52 @@ export class SignupComponent implements OnInit {
   isLoading: boolean = false;
   isSignupMode: boolean = true;
   signupstatus:boolean=false;
+  errorMessage:string|null=null;
+
   onSignupSwitchMode() {
     this.isSignupMode = !this.isSignupMode;
   }
 
+  hideSnackBar(){
+    setTimeout(()=>{
+      this.errorMessage=null;
+    },4000)
+  }
+
   onSignupFormSubmit(form: NgForm) {
+
     this.isLoading = true;
     const name = form.value.name;
     const registrationNumber = form.value.registrationNumber;
     const email = form.value.email;
     const password = form.value.password;
 
+    if(name=="" || registrationNumber=="" || email=="" || password==""){
+      alert("Please fill all fields");
+    }
+
     if (this.isSignupMode) {
       this.authservice.signup(email, password).subscribe({
-        next: (authResponse) => {
+        next: (res) => {
           this.signupdetailsservice.usersignupdetails(name, registrationNumber, email, password)
             .subscribe({
               next: () => {
                 this.isLoading = false;
                 this.signupstatus=true;
                 if(this.signupstatus){
-                  alert("Signup successful. Please login to continue");
+                  alert("Signup was successful. Please login to continue");
                 }
                 form.reset();
               },
-              error: (err) => {
-                alert(err.message);
+              error:(()=>{
                 this.isLoading = false;
-              },
+              })
             });
         },
-        error: (err) => {
-          alert(err.message);
+        error: (errorMsg) => {
           this.isLoading = false;
+          this.errorMessage=errorMsg; 
+          this.hideSnackBar()
         },
       });
     }

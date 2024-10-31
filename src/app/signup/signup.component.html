@@ -1,5 +1,5 @@
 <div class="container">
-
+    <app-snackbar [errorMessage]="errorMessage" *ngIf="errorMessage"></app-snackbar>
     <app-loader *ngIf="isLoading"></app-loader>
     <form class="form" #signupForm="ngForm" (ngSubmit)="onSignupFormSubmit(signupForm)" *ngIf="!isLoading">
         <p id="head-title">Create A New Account</p>
