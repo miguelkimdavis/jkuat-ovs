@@ -1,5 +1,7 @@
 <div class="container">
 
+    <app-loader *ngIf="isLoading"></app-loader>
+    <app-snackbar [errorMessage]="errorMessage" *ngIf="errorMessage"></app-snackbar>
     <form class="form" #loginForm="ngForm" (ngSubmit)="onLoginFormSubmit(loginForm)">
         <p id="head-title">Login</p>
 

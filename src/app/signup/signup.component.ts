@@ -32,12 +32,17 @@ export class SignupComponent implements OnInit {
     const registrationNumber = form.value.registrationNumber;
     const email = form.value.email;
     const password = form.value.password;
+    const confirmPassword = form.value.password;
 
     if(name=="" || registrationNumber=="" || email=="" || password==""){
       alert("Please fill all fields");
     }
 
-    if (this.isSignupMode) {
+    if (this.isSignupMode) {    
+    if (confirmPassword !== password){
+      alert("Passwords do not match")
+    }
+    
       this.authservice.signup(email, password).subscribe({
         next: (res) => {
           this.signupdetailsservice.usersignupdetails(name, registrationNumber, email, password)
