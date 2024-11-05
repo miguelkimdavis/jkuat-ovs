@@ -1,0 +1,89 @@
+<div class="candidates-content">
+
+  <app-loader *ngIf="isLoading"></app-loader>
+
+  <div class="candidates">
+    <div class="candidtes-header">
+      <h4>PRESIDENT</h4>
+    </div>
+    <div class="candidates-body open">
+      <table class="table table-bordered">
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Gender</th>
+          <th>Course</th>
+          <th>Year</th>
+          <th>Picture</th>
+          <th>Vote</th>
+        </tr>
+        <tr *ngFor="let president of presidentData">
+          <td>{{ president.name }}</td>
+          <td>{{ president.age }}</td>
+          <td>{{ president.gender }}</td>
+          <td>{{ president.course }}</td>
+          <td>{{ president.yearOfStudy }}</td>
+          <td>
+            <img src="{{ president.photo }}" alt="{{ president.name }}" />
+          </td>
+          <td>
+            <input
+              type="radio"
+              class="radioBtn"
+              name="radioBtn"
+              [value]="president"
+              (click)="voteCandidate(president)"
+            />
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <app-loader *ngIf="isLoading"></app-loader>
+
+  <div class="candidates">
+    <div class="candidtes-header">
+      <h4>DEPUTY PRESIDENT</h4>
+    </div>
+    <div class="candidates-body open">
+      <table class="table table-bordered">
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Gender</th>
+          <th>Course</th>
+          <th>Year</th>
+          <th>Picture</th>
+          <th>Vote</th>
+        </tr>
+        <tr *ngFor="let deputypresident of deputyPresidentData">
+          <td>{{ deputypresident.name }}</td>
+          <td>{{ deputypresident.age }}</td>
+          <td>{{ deputypresident.gender }}</td>
+          <td>{{ deputypresident.course }}</td>
+          <td>{{ deputypresident.yearOfStudy }}</td>
+          <td>
+            <img
+              src="{{ deputypresident.photo }}"
+              alt="{{ deputypresident.name }}"
+            />
+          </td>
+          <td>
+            <input
+              type="radio"
+              class="radioBtn"
+              name="radioBtn"
+              [value]="deputypresident"
+              (click)="voteCandidate(deputypresident)"
+            />
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  
+</div>
+
+
+<button class="btn btn-primary" (click)="submitVote()">SUBMIT</button>

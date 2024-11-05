@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { LoaderComponent } from './utility/loader/loader.component';
 import { SnackbarComponent } from './utility/snackbar/snackbar.component';
+import { CandidateComponent } from './candidate/candidate.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { SnackbarComponent } from './utility/snackbar/snackbar.component';
     LoginComponent,
     SignupComponent,
     LoaderComponent,
-    SnackbarComponent
+    SnackbarComponent,
+    CandidateComponent,
   ],
   imports: [
     BrowserModule,

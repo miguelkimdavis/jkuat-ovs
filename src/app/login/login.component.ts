@@ -57,8 +57,6 @@ export class LoginComponent implements OnInit {
     }
     console.log(form.value);
     form.reset();
-    
-
   }
 
   constructor(private router: Router, private authService: AuthService) { }

@@ -4,6 +4,7 @@ import { OvsBodyComponent } from './ovs-body/ovs-body.component';
 import { ContactComponent } from './contact/contact.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { CandidateComponent } from './candidate/candidate.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path:'signup',
     component:SignupComponent
+  },
+  {
+    path:'candidates',
+    component:CandidateComponent
   }
 ];
 

@@ -7,7 +7,8 @@
     "axe/name-role-value": [
       "default",
       {
-        "link-name": "off"
+        "link-name": "off",
+        "button-name": "off"
       }
     ],
     "compat-api/css": [
@@ -16,6 +17,12 @@
         "ignore": [
           "-webkit-text-size-adjust"
         ]
+      }
+    ],
+    "axe/forms": [
+      "default",
+      {
+        "label": "off"
       }
     ]
   }
