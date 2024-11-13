@@ -8,8 +8,6 @@ import { catchError, throwError } from 'rxjs';
 })
 
 export class AuthService {
-    // http: HttpClient = inject(HttpClient);
-
 
     signup(email:string,password:string){
         const data = {email:email,password:password,returnSecureToken:true}

@@ -13,6 +13,8 @@ export class ContactComponent implements OnInit {
   constructor(private router: Router, private feedbackservice: FeedbackService) {}
 
   isLoading: boolean = false;
+  successMessage: string | null = null;
+  errorMessage: string | null = null;
 
   ngOnInit(): void {}
 
@@ -24,8 +26,11 @@ export class ContactComponent implements OnInit {
     console.log(form.value);
 
     if(name=='' || email=='' || message==''){
-      alert('Please fill all fields');
       this.isLoading=false
+      this.errorMessage='Please fill all fields'
+      setTimeout(()=>{
+        this.errorMessage = null;
+      },5000)
     }
     else{
       this.feedbackservice.sendFeedBack(name, email, message) 
@@ -36,10 +41,16 @@ export class ContactComponent implements OnInit {
         },
         error:(err)=>{
           this.isLoading=false
-          alert(err.message);
+          this.errorMessage=err.error.message
+          setTimeout(()=>{
+            this.errorMessage = null;
+          },5000)
         },
         complete:()=>{
-          alert('Feedback sent successfully');
+          this.successMessage='Feedback sent successfully'
+          setTimeout(()=>{
+            this.successMessage = null;
+          },3000)
         }
       }) 
       form.reset();

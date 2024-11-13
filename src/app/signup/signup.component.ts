@@ -14,6 +14,7 @@ export class SignupComponent implements OnInit {
   isSignupMode: boolean = true;
   signupstatus:boolean=false;
   errorMessage:string|null=null;
+  successMessage:string|null=null;
 
   onSignupSwitchMode() {
     this.isSignupMode = !this.isSignupMode;
@@ -35,12 +36,18 @@ export class SignupComponent implements OnInit {
     const confirmPassword = form.value.password;
 
     if(name=="" || registrationNumber=="" || email=="" || password==""){
-      alert("Please fill all fields");
+      this.errorMessage = "Please Fill All Fields"
+      setTimeout(()=>{
+        this.errorMessage = null;
+      },5000)
     }
 
     if (this.isSignupMode) {    
     if (confirmPassword !== password){
-      alert("Passwords do not match")
+      this.errorMessage = "Password Does Not Match"
+      setTimeout(()=>{
+        this.errorMessage = null;
+      },5000)
     }
     
       this.authservice.signup(email, password).subscribe({
@@ -51,7 +58,10 @@ export class SignupComponent implements OnInit {
                 this.isLoading = false;
                 this.signupstatus=true;
                 if(this.signupstatus){
-                  alert("Signup was successful. Please login to continue");
+                  this.successMessage = "Signup Was Successful. Please Login To Continue"
+                  setTimeout(()=>{
+                    this.successMessage = null;
+                  },5000)
                 }
                 form.reset();
               },
@@ -63,6 +73,9 @@ export class SignupComponent implements OnInit {
         error: (errorMsg) => {
           this.isLoading = false;
           this.errorMessage=errorMsg; 
+          setTimeout(()=>{
+            this.errorMessage = null;
+          },5000)
           this.hideSnackBar()
         },
       });

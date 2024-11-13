@@ -1,9 +1,13 @@
-export interface Candidates{
-    name:string
-    age:number
-    gender:string
-    party:string
-    course:string
-    yearOfStudy:number
-    photo:string
+export class Candidates{
+    name?:string
+    email?:string
+    age?:number
+    gender?:string
+    party?:string
+    course?:string
+    year?:number
+    photo?:string
+    position?:string
+    votes?:number
+    id?:string
 }

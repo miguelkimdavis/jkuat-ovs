@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class SnackbarComponent implements OnInit {
 
   @Input() errorMessage: string | null = null;
+  @Input() successMessage: string | null = null;
   
   constructor() { }
 

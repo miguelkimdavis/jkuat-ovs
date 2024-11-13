@@ -1,50 +1,55 @@
-    <div class="container">
-        <div class="visit-us">
-            <h3>Visit Us At:</h3>
-            <p>JKUAT MAIN CAMPUS,</p>
-            <P>IEET BUILDING,</P>
-            <P>2nd FLOOR</P>
-            <h2>Contact Us</h2>
-            <div class="contact-info">
-                <i class="fa-sharp fa-solid fa-phone"></i>:  <a href="0739602014">0739602014</a><br>
-                <i class="fa-solid fa-envelope"></i>:  <a href="gmail.com">ovsjkuat.ac.ke</a><br>
-                <i class="fa-brands fa-instagram"></i>: <a href="instagram.com">jkuat_elections</a><br>
-                <i class="fa-solid fa-x"></i>: <a href="x.com">jkuat_x_elections</a>
-                <p>P.O. Box: 62000 - 00200 NAIROBI, KENYA,</p>
-            </div>
-        </div><br><br>
+<app-snackbar [errorMessage]="errorMessage" *ngIf="errorMessage"></app-snackbar>
+<app-snackbar [successMessage]="successMessage" *ngIf="successMessage"></app-snackbar>
+  
+<div class="container">
+    <div class="visit-us">
+        <h3>Visit Us At:</h3>
+        <p>JKUAT MAIN CAMPUS,</p>
+        <P>IEET BUILDING,</P>
+        <P>2nd FLOOR</P>
+        <h2>Contact Us</h2>
+        <div class="contact-info">
+            <i class="fa-sharp fa-solid fa-phone"></i>:  <a href="0739602014">0739602014</a><br>
+            <i class="fa-solid fa-envelope"></i>:  <a href="gmail.com">ovsjkuat.ac.ke</a><br>
+            <i class="fa-brands fa-instagram"></i>: <a href="instagram.com">jkuat_elections</a><br>
+            <i class="fa-solid fa-x"></i>: <a href="x.com">jkuat_x_elections</a>
+            <p>P.O. Box: 62000 - 00200 NAIROBI, KENYA,</p>
+        </div>
+    </div><br><br>
 
-        <h2>We Value Your Feedback and Would Love To Hear From You</h2>
-        <p>Please fill out the form below and we will get back to you as soon as possible.</p>
-        <app-loader *ngIf="isLoading"></app-loader>
-        <form id="contactForm" #feedbackForm="ngForm">
-            <label for="name">Name</label>
-            <input type="text" 
-                id="name" 
-                name="name" 
-                placeholder="Your name" 
-                required
-                ngModel>
+    <h2>We Value Your Feedback and Would Love To Hear From You</h2>
+    <p>Please fill out the form below and we will get back to you as soon as possible.</p>
+    <app-loader *ngIf="isLoading"></app-loader>
+    <form id="contactForm" #feedbackForm="ngForm">
+        <label for="name">Name</label>
+        <input type="text" 
+            id="name" 
+            name="name" 
+            placeholder="Your name" 
+            required
+            ngModel>
 
-            <label for="email">Email</label>
-            <input type="email" 
-                id="email" 
-                name="email" 
-                placeholder="Your email" 
-                required
-                ngModel>
+        <label for="email">Email</label>
+        <input type="email" 
+            id="email" 
+            name="email" 
+            placeholder="Your email" 
+            required
+            ngModel>
 
-            <label for="message">Message</label>
-            <textarea
-                id="message" 
-                name="message" 
-                rows="5" 
-                placeholder="Your message" 
-                required
-                ngModel>
-            </textarea>
+        <label for="message">Message</label>
+        <textarea
+            id="message" 
+            name="message" 
+            rows="5" 
+            placeholder="Your message" 
+            required
+            ngModel>
+        </textarea>
 
-            <button type="submit" (click)="onFeedBackSubmit(feedbackForm)">Submit</button>
-        </form>
+        <button type="submit" (click)="onFeedBackSubmit(feedbackForm)">Submit</button>
+    </form>
 
-    </div>
+</div>
+
+

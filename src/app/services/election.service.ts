@@ -16,8 +16,15 @@ export class ElectionService {
         return this.http.get<Candidates[]>
         ('https://ovs-candidates-default-rtdb.firebaseio.com/president.json')
     }
+
     deputyPresidentElection(){
         return this.http.get<Candidates[]>
         ('https://ovs-candidates-default-rtdb.firebaseio.com/deputypresident.json')
     }
+
+    primeMinisterElection(){
+        return this.http.get<Candidates[]>
+        ('https://ovs-candidates-default-rtdb.firebaseio.com/primeminister.json')
+    }
+    
 }

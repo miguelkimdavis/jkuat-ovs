@@ -13,7 +13,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoaderComponent } from './utility/loader/loader.component';
 import { SnackbarComponent } from './utility/snackbar/snackbar.component';
 import { CandidateComponent } from './candidate/candidate.component';
-
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { environment } from '../environments/environment';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +33,9 @@ import { CandidateComponent } from './candidate/candidate.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig), 
+    AngularFirestoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

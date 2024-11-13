@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   isLoginMode: boolean = true;
   loginstatus: boolean = false;
   errorMessage:string|null=null;
+  successMessage:string|null=null;
 
 
   onLoginSwitchMode(){
@@ -35,7 +36,10 @@ export class LoginComponent implements OnInit {
     const password = form.value.password;
 
     if(username == '' || email == '' || password == ''){
-      alert('Please fill all fields');
+      this.errorMessage="Please fill all fields'"
+      setTimeout(()=>{
+        this.errorMessage = null;
+      },5000)
     }
 
     if(this.isLoginMode){
@@ -44,12 +48,18 @@ export class LoginComponent implements OnInit {
           this.loginstatus = true;
           this.isLoading = false;
           if(this.loginstatus){
-            alert('Login successful');
+            this.successMessage="Login successful"
+            setTimeout(()=>{
+              this.successMessage = null;
+            },3000)
           }
         },
         error: (errorMsg) => {
           this.isLoading = false;
           this.errorMessage=errorMsg; 
+          setTimeout(()=>{
+            this.errorMessage = null;
+          },5000)
           this.hideSnackBar()
         },
       })
