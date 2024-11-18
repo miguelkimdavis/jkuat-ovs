@@ -11,17 +11,22 @@ import { Candidates } from "../model/candidates";
 export class CandidatesService {
     
     private dbPath = '/candidates'
-    candidatesRef:AngularFirestoreCollection<Candidates>
+    candidatesDetails:AngularFirestoreCollection<Candidates>
 
-    constructor(private db:AngularFirestore) {
-        this.candidatesRef = this.db.collection(this.dbPath, ref => ref.orderBy('position'))
+
+    constructor
+    (
+        private db:AngularFirestore,
+    ) {
+        this.candidatesDetails = this.db.collection(this.dbPath)
     }
 
     getAllCandidates():AngularFirestoreCollection<Candidates>{
-        return this.candidatesRef
+        return this.candidatesDetails
     }
 
     getCandidateByPosition(position:string):AngularFirestoreCollection<Candidates>{
         return this.db.collection(this.dbPath, ref => ref.where('position', '==', position))
     }
+
 }

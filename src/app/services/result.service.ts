@@ -1,18 +1,52 @@
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { Candidates } from "../model/candidates";
+import { Injectable } from '@angular/core';
+import {
+  AngularFirestore,
+  AngularFirestoreCollection,
+} from '@angular/fire/compat/firestore';
+import { Results } from '../model/result';
 
-@Injectable(
-    {
-        providedIn: "root"
-    }
-)
+@Injectable({
+  providedIn: 'root',
+})
 export class ResultService {
-    constructor(private http:HttpClient){}
+  private resultsPath = 'results';
+  resultsCollectionRef: AngularFirestoreCollection<Results>;
 
-    electionResult(name:string, party:string, votes:number){
-        const results = {name:name, party:party, votes:votes}
-        return this.http.post<Candidates[]>
-        ('https://ovs-results-e13ef-default-rtdb.firebaseio.com/results.json',results)
-    }
+  constructor(private db: AngularFirestore) {
+    this.resultsCollectionRef = this.db.collection(this.resultsPath);
+  }
+
+  updateResuts(candidateId: string, data: Results) {
+    return this.db
+      .collection(this.resultsPath, (ref) => {
+        return ref.where('candidateId', '==', candidateId);
+      })
+      .get()
+      .toPromise()
+      .then((snapShot) => {
+        console.log('update snapshot', snapShot);
+
+        if (snapShot) {
+          const items: any = snapShot.docs.map((doc) => {
+            const data = doc.data() as object;
+            return {
+              id: doc.id,
+              ...data,
+            };
+          });
+          console.log('results', items);
+          const { id, ...dataWithoutId } = items[0];
+          return this.db
+            .collection(this.resultsPath)
+            .doc(items[0].id)
+            .update({
+              ...dataWithoutId,
+              votes: Number(items[0]['votes']) + 1,
+            });
+        } 
+        else {
+          return snapShot;
+        }
+      });
+  }
 }

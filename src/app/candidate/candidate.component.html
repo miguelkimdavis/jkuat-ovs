@@ -1,78 +1,101 @@
-<div class="container" >
+<div class="container">
   <app-loader *ngIf="isLoading"></app-loader>
-<app-snackbar [errorMessage]="errorMessage" *ngIf="errorMessage"></app-snackbar>
-<app-snackbar [successMessage]="successMessage" *ngIf="successMessage"></app-snackbar>
+  <app-snackbar [errorMessage]="errorMessage" *ngIf="errorMessage"></app-snackbar>
+  <app-snackbar [successMessage]="successMessage" *ngIf="successMessage"></app-snackbar>
+  <h3 *ngIf="!selectedPresident || !selectedDeputyPresident || !selectedPrimeMinister" class="text-danger" [hidden]="isLoading">
+    Please select a candidate for each position to enable the Submit button.
+  </h3>
 
-<div class="president-container">
-  <h2 [hidden]="isLoading">President Candidates</h2>
-  <table id="candidatesTable" class="table table-bordered" [hidden]="isLoading">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Party</th>
-        <th>Vote</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let candidate of presidentCandidates">
-        <td>{{ candidate.name }}</td>
-        <td>{{ candidate.party }}</td>
-        <td>
-          <input 
-            type="radio"
-            (click)="vote(candidate.id, candidate.name, 'president')">
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+  <div class="president-container">
+    <h2 [hidden]="isLoading">President Candidates</h2>
+    <table
+      id="candidatesTable"
+      class="table table-bordered"
+      [hidden]="isLoading">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Party</th>
+          <th>Vote</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let candidate of presidentCandidates">
+          <td>{{ candidate.name }}</td>
+          <td>{{ candidate.party }}</td>
+          <td>
+            <input
+              type="radio"
+              name="presidentVote"
+              (change)="selectedPresident = candidate"/>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-<div class="deputy-president-container">
-  <h2 [hidden]="isLoading">Deputy President Candidates</h2>
-  <table id="candidatesTable" class="table table-bordered" [hidden]="isLoading">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Party</th>
-        <th>Vote</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let candidate of deputyPresidentCandidates">
-        <td>{{ candidate.name }}</td>
-        <td>{{ candidate.party }}</td>
-        <td>
-          <input 
-            type="radio"
-            (click)="vote(candidate.id, candidate.name,'deputypresident')">
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+  <div class="deputy-president-container">
+    <h2 [hidden]="isLoading">Deputy President Candidates</h2>
+    <table
+      id="candidatesTable"
+      class="table table-bordered"
+      [hidden]="isLoading"
+    >
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Party</th>
+          <th>Vote</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let candidate of deputyPresidentCandidates">
+          <td>{{ candidate.name }}</td>
+          <td>{{ candidate.party }}</td>
+          <td>
+            <input
+              type="radio"
+              name="deputypresident"
+              (change)="selectedDeputyPresident = candidate"/>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-<div class="prime-minister-container">
-  <h2 [hidden]="isLoading">Prime Minister Candidates</h2>
-  <table id="candidatesTable" class="table table-bordered" [hidden]="isLoading">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Party</th>
-        <th>Vote</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let candidate of primeMinisterCandidates">
-        <td>{{ candidate.name }}</td>
-        <td>{{ candidate.party }}</td>
-        <td>
-          <input 
-            type="radio"
-            (click)="vote(candidate.id,candidate.name, 'primeminister')">
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-<button type="button" class="btn btn-primary" (click)="submitVote()">Submit</button>
+  <div class="prime-minister-container">
+    <h2 [hidden]="isLoading">Prime Minister Candidates</h2>
+    <table
+      id="candidatesTable"
+      class="table table-bordered"
+      [hidden]="isLoading"
+    >
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Party</th>
+          <th>Vote</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let candidate of primeMinisterCandidates">
+          <td>{{ candidate.name }}</td>
+          <td>{{ candidate.party }}</td>
+          <td>
+            <input
+              type="radio"
+              name="primeminister"
+              (change)="selectedPrimeMinister = candidate"/>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <button 
+  type="button" class="btn btn-primary" id="submitBtn" (click)="submitVote()" 
+  [disabled]="!selectedPresident || !selectedDeputyPresident || !selectedPrimeMinister">
+    Submit
+  </button>
+
 </div>

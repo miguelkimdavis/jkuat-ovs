@@ -1,3 +1,7 @@
 .btn{
     margin-left: 1050px;
 }
+
+.btn:checked{
+    display: none;
+}
