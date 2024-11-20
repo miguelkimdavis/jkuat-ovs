@@ -1,0 +1,78 @@
+<div class="container">
+    <app-loader *ngIf="isLoading"></app-loader>
+
+    <div class="president-container">
+        <h2 [hidden]="isLoading">Presidential Candidates Results</h2>
+        <table
+        id="candidatesTable"
+        class="table table-bordered"
+        [hidden]="isLoading">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Party</th>
+                    <th>Votes</th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let candidateResult of presidentResults">
+                <tr>
+                    <td>{{candidateResult.name}}</td>
+                    <td>{{candidateResult.party}}</td>
+                    <td>{{candidateResult.votes}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+
+    <div class="deputypresident-container">
+        <h2 [hidden]="isLoading">Deputy President's Candidates Results</h2>
+        <table
+        id="candidatesTable"
+        class="table table-bordered"
+        [hidden]="isLoading">
+            <thead>
+                <tr >
+                    <th>Name</th>
+                    <th>Party</th>
+                    <th>Votes</th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let candidateResult of deputyPresidentResults">
+                <tr>
+                    <td>{{candidateResult.name}}</td>
+                    <td>{{candidateResult.party}}</td>
+                    <td>{{candidateResult.votes}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="primeminister-container">
+        <h2 [hidden]="isLoading">Prime Minister's Candidates Results</h2>
+        <table
+        id="candidatesTable"
+        class="table table-bordered"
+        [hidden]="isLoading">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Part</th>
+                    <th>Votes</th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let candidateResult of primeMinisterResults">
+                <tr>
+                    <td>{{candidateResult.name}}</td>
+                    <td>{{candidateResult.party}}</td>
+                    <td>{{candidateResult.votes}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="chart">
+        <canvas id="resultsPieChart"></canvas>
+    </div>
+
+</div>

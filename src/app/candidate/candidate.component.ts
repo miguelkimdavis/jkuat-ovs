@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Candidates } from '../model/candidates';
 import { CandidatesService } from '../services/candidates.service';
 import { ResultService } from './../services/result.service';
@@ -12,7 +12,7 @@ import { Results } from '../model/result';
 })
 export class CandidateComponent implements OnInit {
   candidates?: Candidates[];
-  candidatesResult? : Results[];
+  candidatesResult?: Results[];
   currentId: string = '';
   presidentCandidates: Candidates[] = [];
   selectedPresident?: Candidates;
@@ -106,42 +106,46 @@ export class CandidateComponent implements OnInit {
 
   submitVote() {
     this.isLoading = true;
-    this.voteForCandidate(this.selectedPresident, "President")
-      .then(() => this.voteForCandidate(this.selectedDeputyPresident, "Deputy President"))
-      .then(() => this.voteForCandidate(this.selectedPrimeMinister, "Prime Minister"))
-      .finally(() => (this.isLoading = false));
+    this.voteForCandidate(this.selectedPresident, 'President')
+      .then(() =>
+        this.voteForCandidate(this.selectedDeputyPresident, 'Deputy President')
+      )
+      .then(() =>
+        this.voteForCandidate(this.selectedPrimeMinister, 'Prime Minister')
+      )
+      .finally(() => this.route.navigate(['results']));
   }
-  
-  private voteForCandidate(candidate: Candidates | undefined, position: string) {
+
+  private voteForCandidate(
+    candidate: Candidates | undefined,
+    position: string
+  ) {
     if (!candidate) {
-      this.errorMessage = `Please select a candidate for ${position}.`;
-      console.error(this.errorMessage);
+      this.errorMessage = 'Please select a candidate to vote for.';
       setTimeout(() => {
         this.errorMessage = null;
       }, 3000);
       return Promise.resolve();
+    } else {
+      const updatedVotes = (candidate.votes || 0) + 1;
+
+      return this.resultservice
+        .updateResuts(candidate.id!, {
+          candidateId: candidate.id!,
+          votes: updatedVotes,
+        })
+        .then(() => {
+          this.successMessage = 'Your vote was submitted successfully!';
+          setTimeout(() => {
+            this.successMessage = null;
+          }, 3000);
+        })
+        .catch((error) => {
+          this.errorMessage = `Error submitting ${position} vote: ${error.message}`;
+          setTimeout(() => {
+            this.errorMessage = null;
+          }, 5000);
+        });
     }
-  
-    console.log(`Voting for ${position} Candidate:`, candidate);
-  
-    const updatedVotes = (candidate.votes || 0) + 1;
-  
-    return this.resultservice
-      .updateResuts(candidate.id!, { candidateId: candidate.id!, votes: updatedVotes })
-      .then(() => {
-        this.successMessage = `${position} vote submitted successfully!`;
-        console.log(this.successMessage);
-        setTimeout(() => {
-          this.successMessage = null;
-        }, 3000);
-      })
-      .catch((error) => {
-        this.errorMessage = `Error submitting ${position} vote: ${error.message}`;
-        console.error(this.errorMessage);
-        setTimeout(() => {
-          this.errorMessage = null;
-        }, 5000);
-      });
   }
-  
 }

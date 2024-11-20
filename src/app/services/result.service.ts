@@ -16,6 +16,14 @@ export class ResultService {
     this.resultsCollectionRef = this.db.collection(this.resultsPath);
   }
 
+  getResults(){
+    return this.resultsCollectionRef
+  }
+
+  getResultsByPosition(position:string):AngularFirestoreCollection<Results>{
+    return this.db.collection(this.resultsPath,ref=>ref.where('position','==',position))
+  }
+
   updateResuts(candidateId: string, data: Results) {
     return this.db
       .collection(this.resultsPath, (ref) => {

@@ -12,8 +12,7 @@ export class CandidatesService {
     
     private dbPath = '/candidates'
     candidatesDetails:AngularFirestoreCollection<Candidates>
-
-
+    
     constructor
     (
         private db:AngularFirestore,

@@ -5,6 +5,7 @@
 <div class="container">
     <form class="form" #signupForm="ngForm" (ngSubmit)="onSignupFormSubmit(signupForm)" *ngIf="!isLoading">
         <p id="head-title">Create A New Account</p>
+
         <div class="login-field">
             <label>Name: <br> <i class="input-icon fa-solid fa-user"></i></label>
             <input type="text" 
@@ -16,7 +17,7 @@
         </div>
 
         <div class="login-field">
-            <label>Registration Number: <br><i class="fa-solid fa-user-ninja"></i></label>
+            <label>Registration Number: <br><i class="input-icon fa-solid fa-user-ninja"></i></label>
             <input type="text" 
                 class="input-field" 
                 placeholder="Enter Your Username"
@@ -26,7 +27,7 @@
         </div>
 
         <div class="login-field">
-            <label>Email Address: <br> <i class="fa-solid fa-envelope"></i></label>
+            <label>Email Address: <br> <i class="input-icon fa-solid fa-envelope"></i></label>
             <input type="email" 
                 class="input-field" 
                 placeholder="Enter Your Email"
@@ -47,7 +48,7 @@
         </div>
 
         <div class="login-field">
-            <label>Confirm PassWord: <br> <i class="fa-solid fa-key"></i></label>
+            <label>Confirm PassWord: <br> <i class="input-icon fa-solid fa-key"></i></label>
             <input type="password" 
                 class="input-field" 
                 placeholder="Confirm Your PassWord"
@@ -57,7 +58,11 @@
         </div>
 
         <div class="btn">
-            <button class="button-1">Sign Up</button>
+            <button class="button-1"
+            type="submit"
+            [disabled]="signupForm.invalid"
+            >SignUp
+            </button>
         </div>
 
         <div class="btn-login">

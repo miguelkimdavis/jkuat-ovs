@@ -1,18 +1,41 @@
-<header>
-    <div class="header-logo">
+<header class="main-header">
+    <div class="logo">
         <a routerLink="/">
-            <img src="assets/images/logo.png" alt="jkuat elections" >
+            <img src="assets/images/logo.png" alt="jkuat elections">
         </a>
     </div>
-    <div class="header-nav">
-        <a routerLink="/">HOME</a>
-        <a routerLink="/candidates">CANDIDATES</a>
-        <a routerLink="/contact">CONTACT</a>
-        <div class="headerlogin">
-            <!-- <button><a routerLink="/login" class="login-btn"></a>LogIn</button>
-            <button><a routerLink="/signup" class="signup-btn"></a>SignUp</button> -->
-            <a routerLink="/login" class="login-btn">LogIn</a>
-            <a routerLink="/signup" class="signup-btn">SignUp</a>
-        </div>
-    </div>
+    <nav class="desktop-main-menu">
+        <ul>
+            <li><a routerLink="/" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{ exact: true }">HOME</a></li>
+            <li><a routerLink="/candidates" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{ exact: true }">CANDIDATES</a></li>
+            <li><a class="nav-link disabled" aria-disabled="true" routerLink="/results" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{ exact: true }">RESULTS</a></li>
+            <li><a routerLink="/contact" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{ exact: true }">CONTACT</a></li>
+            <li>
+                <div class="header-login">
+                    <a routerLink="/login" class="login-btn">LogIn</a>
+                    <a routerLink="/signup" class="signup-btn">SignUp</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
 </header>
+
+<div id="mobile-menu" class="mobile-main-menu">
+    <ul>
+        <li><a routerLink="/" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{ exact: true }">HOME</a></li>
+        <li><a routerLink="/candidates" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{ exact: true }">CANDIDATES</a></li>
+        <li><a routerLink="/contact" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{ exact: true }">CONTACT</a></li>
+        <li>
+            <div class="header-login">
+                <a routerLink="/login" class="login-btn">LogIn</a>
+                <a routerLink="/signup" class="signup-btn">SignUp</a>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<button id="menu-btn" class="hamburger" type="button" (click)="toggleMenu()">
+    <span class="hamburger-top"></span>
+    <span class="hamburger-middle"></span>
+    <span class="hamburger-bottom"></span>
+</button>

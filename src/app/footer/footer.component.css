@@ -1,70 +1,74 @@
-footer{
-    padding: 5px 0px;
-    background-color: green;
+footer {
+    background-color: #333;  
     color: white;
+    padding: 40px 20px;
     text-align: center;
-    font-weight: lighter;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
+    font-family: 'Arial', sans-serif;
+    font-size: 1rem;
+    margin-top: 40px; 
 }
-a{
-    display: block;
-    text-decoration: none;
+
+.footer-nav {
+    margin-bottom: 20px;
+}
+
+.footer-nav a {
     color: white;
-    font-weight: bold;
-    justify-content: center;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 1.1rem;
     transition: color 0.3s ease;
 }
-a:hover{
-    color: antiquewhite;
-}
-.footer-nav{
-    padding: 20px 20px;
-    width: 90%;
-    text-align: center;
+
+.footer-nav a:hover {
+    color: #3498db;  
 }
 
-.social-links{
-    display: flex;
-    flex-direction: row;
-    gap: 15px;
-    align-items: center;
-    justify-content: center;
-    width: 90%;
+.social-links {
+    margin-bottom: 20px;
 }
 
-.social-links i{
-    color: black;
-    font-size: 20px;
+.social-links a {
+    color: white;
+    margin: 0 15px;
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
 }
 
-/* @media (max-width:640px) {
-    
-.social-links{
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    align-items: center;
-    justify-content: center;
-    width: 90%;
+.social-links a:hover {
+    color: #3498db;  
 }
 
-.social-links i{
-    color: black;
-    font-size: 20px;
+.social-links a i {
+    transition: transform 0.3s ease;
 }
-} */
 
+.social-links a:hover i {
+    transform: scale(1.2); 
+}
 
-@media (max-width: 768px){
-    footer{
-        padding: 5px 0px;
-        background-color: green;
-        color: white;
-        text-align: center;
-        font-weight: lighter;
-        border-bottom-left-radius: 5px;
-        border-bottom-right-radius: 5px;
-        width: 115%;
+footer p {
+    font-size: 0.9rem;
+    color: #bbb; 
+    margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    footer {
+        padding: 20px 10px;
+    }
+
+    .footer-nav a {
+        margin: 5px;
+        font-size: 1rem; 
+    }
+
+    .social-links a {
+        margin: 0 10px;
+        font-size: 1.3rem; 
+    }
+
+    footer p {
+        font-size: 0.8rem;
     }
 }

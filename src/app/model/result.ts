@@ -1,3 +1,4 @@
+
 export class Results {
     candidateId?:string;
     position?:string;

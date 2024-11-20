@@ -5,6 +5,8 @@ import { ContactComponent } from './contact/contact.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { CandidateComponent } from './candidate/candidate.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { ResultsComponent } from './results/results.component';
 
 const routes: Routes = [
   {
@@ -26,7 +28,35 @@ const routes: Routes = [
   {
     path:'candidates',
     component:CandidateComponent
+  },
+  {
+    path:'results',
+    component:ResultsComponent
+  },
+  {
+    path:'**',
+    component:NotFoundComponent
   }
+  // {
+  //   path:'',
+  //   component:LoginComponent
+  // },
+  // {
+  //   path:'signup',
+  //   component:SignupComponent
+  // },
+  // {
+  //   path:'about',
+  //   component:OvsBodyComponent
+  // },
+  // {
+  //   path:'candidates',
+  //   component:CandidateComponent
+  // },
+  // {
+  //   path:'contact',
+  //   component:ContactComponent
+  // }
 ];
 
 @NgModule({

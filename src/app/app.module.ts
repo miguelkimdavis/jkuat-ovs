@@ -16,6 +16,8 @@ import { CandidateComponent } from './candidate/candidate.component';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { environment } from '../environments/environment';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { ResultsComponent } from './results/results.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +30,8 @@ import { environment } from '../environments/environment';
     LoaderComponent,
     SnackbarComponent,
     CandidateComponent,
+    NotFoundComponent,
+    ResultsComponent,
   ],
   imports: [
     BrowserModule,
